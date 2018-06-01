@@ -10,3 +10,5 @@ build/
 .settings
 .classpath
 src/
+out/
+logs/

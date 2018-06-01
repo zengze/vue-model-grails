@@ -91,29 +91,18 @@ hibernate:
         queries: false
         use_second_level_cache: false
         use_query_cache: false
-dataSource:
-    pooled: true
-    jmxExport: true
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ''
 
 environments:
     development:
+        server:
+            port: 5001
         dataSource:
+            pooled: true
             dbCreate: update
             url: jdbc:mysql://localhost:3306/vue_model
             driverClassName: com.mysql.jdbc.Driver
             username: root
             password: zengze
-    test:
-        dataSource:
-            dbCreate: update
-            url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-    production:
-        dataSource:
-            dbCreate: none
-            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
             properties:
                 jmxEnabled: true
                 initialSize: 5
@@ -132,3 +121,5 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+    test:
+    production:
