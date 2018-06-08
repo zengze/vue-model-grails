@@ -12,11 +12,11 @@ class User {
     Date dateCreated, lastUpdated
 
     static constraints = {
-        accountId(nullable: false)
-        account(nullable: false)
+        accountId(nullable: false, unique: true)
+        account(nullable: false, unique: true)
         password(nullable: false)
         name(nullable: true)
-        mobile(nullable: true)
-        email(nullable: true)
+        mobile(nullable: true, unique: true)
+        email(nullable: true, unique: true)
     }
 }
