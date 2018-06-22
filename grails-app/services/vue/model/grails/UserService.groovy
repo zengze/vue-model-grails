@@ -16,9 +16,18 @@ class UserService {
         if(params.name && params.name != "" && params.name != "null") { user.name = params.name }
         if(params.mobile && params.mobile != "" && params.mobile != "null") { user.mobile = params.mobile }
         if(params.email && params.email != "" && params.email != "null") { user.email = params.email }
-        user = user.save(flush: true, failOnError: true)
-        if(user) {
-            result = [success: true, message: "注册成功！"]
+        if(user.save()) {
+            result.success = true
+            result.message = "注册成功！"
+        } else {
+            def errorList = [] as List
+            user.errors.allErrors.each {
+                def error = [:] as Map
+                error.arguments = it.arguments
+                error.message = it.defaultMessage
+                errorList.add(error)
+            }
+            log.info("====注册失败原因====" + errorList)
         }
         return result
     }
