@@ -20,14 +20,7 @@ class UserService {
             result.success = true
             result.message = "注册成功！"
         } else {
-            def errorList = [] as List
-            user.errors.allErrors.each {
-                def error = [:] as Map
-                error.arguments = it.arguments
-                error.message = it.defaultMessage
-                errorList.add(error)
-            }
-            log.info("====注册失败原因====" + errorList)
+            log.info("user regUser fail:" + user.errors)
         }
         return result
     }

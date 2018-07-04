@@ -8,13 +8,13 @@ class UserController {
 
     def regUser = {
         try {
-            log.info("====user regUser params====" + params)
+            log.info("user regUser params:" + params)
             def result = userService.regUser(params)
-            log.info("====user regUser result====" + result)
+            log.info("user regUser result:" + result)
             render(text: result as JSON, contentType: "application/json")
         }
         catch(Exception e) {
-            log.error("====user regUser error====", e)
+            log.error("user regUser error:", e)
         }
     }
 }
